@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100px;
+  padding-inline: 10%;
+}
+
+.header > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.header > ul > li > button {
+  padding: 1em 1.5em;
+  background-color: rgb(243, 50, 50);
+  border: none;
+  border-radius: 10px;
+  font-weight: bolder;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+    background-color: hsl(0, 89%, 30%);
+    color: white;
+  }
+}

@@ -15,14 +15,14 @@ const Product = ({
   return (
     <main className={styles.main}>
       <Link href="/">Go back</Link>
-      <section>
-        <h1>{product.title}</h1>
+      <section className={styles.header_section}>
+        <h1>{product.title.toUpperCase()}</h1>
         <h2>{product.description}</h2>
         <span>{product.price}</span>
       </section>
       <section>
         {feedbacks.length ? (
-          <ul>
+          <ul className={styles.feedback_list}>
             {feedbacks.map((feedback) => (
               <Feedback feedback={feedback} />
             ))}

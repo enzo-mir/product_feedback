@@ -5,6 +5,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class PagesController {
   async index(ctx: HttpContext) {
     const products = await new PrductServices().getAll()
+    console.log(ctx.auth.user)
 
     return ctx.inertia.render('home', {
       products,

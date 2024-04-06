@@ -1,23 +1,15 @@
+import AuthService from '#services/auth_service'
 import { defineConfig } from '@adonisjs/inertia'
 
 export default defineConfig({
-  /**
-   * Path to the Edge view that will be used as the root view for Inertia responses
-   */
   rootView: 'inertia_layout',
-
-  /**
-   * Data that should be shared with all rendered pages
-   */
   sharedData: {
     errors: (ctx) => ctx.session?.flashMessages.get('errors'),
+    user: async (ctx) => await new AuthService().getUserDatas(ctx),
   },
 
-  /**
-   * Options for the server-side rendering
-   */
   ssr: {
     enabled: false,
-    entrypoint: 'inertia/app/ssr.tsx'
-  }
+    entrypoint: 'inertia/app/ssr.tsx',
+  },
 })

@@ -1,8 +1,12 @@
 import { ProductType } from '#type/products'
 import { Head, Link } from '@inertiajs/react'
-import Layout from '~/layout/layout'
+import Layout, { ThemeContexte } from '~/layout/layout'
 import styles from '../css/home.module.css'
+import { useContext } from 'react'
 export default function Home({ products }: { products: Array<ProductType> }) {
+  const user = useContext(ThemeContexte)
+  console.log(user)
+
   return (
     <main className={styles.main}>
       <Head title="Homepage" />

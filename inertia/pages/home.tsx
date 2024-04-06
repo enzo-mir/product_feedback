@@ -1,18 +1,26 @@
-import { Head } from '@inertiajs/react'
-
-export default function Home(props: { version: number }) {
+import { ProductType } from '#type/products'
+import { Head, Link } from '@inertiajs/react'
+import Layout from '~/layout/layout'
+import styles from '../css/home.module.css'
+export default function Home({ products }: { products: Array<ProductType> }) {
   return (
-    <>
+    <main className={styles.main}>
       <Head title="Homepage" />
-
-      <div className="container">
-        <div className="title">AdonisJS {props.version} x Inertia x React</div>
-
-        <span>
-          Learn more about AdonisJS and Inertia.js by visiting the{' '}
-          <a href="https://docs.adonisjs.com/guides/inertia">AdonisJS documentation</a>.
-        </span>
-      </div>
-    </>
+      <ul className={styles.products}>
+        {products.map((product) => {
+          return (
+            <Link href={product.id.toString()} key={product.id}>
+              <li>
+                <p>{product.title.toUpperCase()}</p>
+                <p>{product.description}</p>
+                <span>{product.price} €</span>
+              </li>
+            </Link>
+          )
+        })}
+      </ul>
+    </main>
   )
 }
+
+Home.layout = (page: JSX.Element) => <Layout children={page} />

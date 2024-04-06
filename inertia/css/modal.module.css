@@ -10,12 +10,44 @@
   background: #ffffff;
   border: none;
   outline: none;
-  padding: 1em;
+  padding: 5svh 5%;
 }
 .modal > button {
-    align-self: flex-end;
+  align-self: flex-end;
+}
+.modal > form > button,
+.modal > button {
+  background-color: hsl(0, 100%, 50%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  padding: 0.5em;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  &:hover {
+    background-color: hsl(0, 100%, 30%);
+  }
 }
 
 .modal > * {
   width: fit-content;
+}
+
+.modal > form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2svh;
+}
+
+.modal > form > input {
+  border: none;
+  padding-block-end: 0.5em;
+  padding-inline-start: 1em;
+  border-bottom: 2px solid red;
+  outline: none;
+  font-size: larger;
 }

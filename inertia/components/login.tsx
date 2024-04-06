@@ -1,8 +1,8 @@
 import { useForm } from '@inertiajs/react'
 import { ChangeEvent, FormEvent } from 'react'
-import { RegisterType } from '#type/user'
-const Register = () => {
-  const { data, setData, post, processing } = useForm<RegisterType>()
+import { LoginType } from '#type/user'
+const Login = () => {
+  const { data, setData, post, processing } = useForm<LoginType>()
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setData({
       ...data,
@@ -12,31 +12,23 @@ const Register = () => {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    post('/auth/register', { data })
+    post('/auth/login', { data })
   }
   return (
     <>
-      <h1>Register</h1>
+      <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input type="emil" name="email" required onChange={handleChange} />
-        <label htmlFor="pseudo">Pseudo</label>
-        <input
-          type="text"
-          name="pseudo"
-          autoComplete="given-name"
-          required
-          onChange={handleChange}
-        />
         <label htmlFor="password">Password</label>
         <input type="password" name="password" required onChange={handleChange} />
         <button disabled={processing} type="submit">
-          Register
+          Login
         </button>
       </form>
     </>
   )
 }
 
-export default Register
+export default Login

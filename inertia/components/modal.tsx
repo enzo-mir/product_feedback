@@ -9,7 +9,12 @@ const Modal = ({
 }) => {
   const dialogRef = useRef<ElementRef<'dialog'>>(null)
   return (
-    <dialog ref={dialogRef} className={styles.modal} open={children !== null}>
+    <dialog
+      ref={dialogRef}
+      className={styles.modal}
+      open={children !== null}
+      onClick={(e) => e.stopPropagation()}
+    >
       <button onClick={() => setoOpenModal(null)}>Close</button>
       {children}
     </dialog>

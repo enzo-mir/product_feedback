@@ -31,6 +31,3 @@
   flex-direction: column;
   gap: 1em;
 }
-.feedback_list > li {
-  background-color: rgb(225, 50, 50);
-}

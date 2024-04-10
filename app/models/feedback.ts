@@ -8,6 +8,9 @@ export default class Feedback extends BaseModel {
   declare user_id: string
 
   @column()
+  declare pseudo: string
+
+  @column()
   declare product_id: number
 
   @column()

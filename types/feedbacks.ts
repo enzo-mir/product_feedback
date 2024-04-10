@@ -4,3 +4,4 @@ export type CreateFeedbackType = {
   text: string
 }
 
+export type UpdateFeedbackType = Omit<CreateFeedbackType, 'product_id'>

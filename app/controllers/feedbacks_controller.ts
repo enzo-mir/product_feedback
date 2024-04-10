@@ -7,7 +7,11 @@ export default class FeedbacksController {
     const payload: CreateFeedbackType = ctx.request.all() as unknown as CreateFeedbackType
     try {
       if (await ctx.auth.check()) {
-        await Feedback.create(payload)
+        await Feedback.create({
+          ...payload,
+          user_id: ctx.auth.user!.id,
+          pseudo: ctx.auth.user!.pseudo,
+        })
         return ctx.response.redirect().back()
       }
       throw new Error()
@@ -36,11 +40,11 @@ export default class FeedbacksController {
   }
 
   async update(ctx: HttpContext) {
-    const payload: CreateFeedbackType = ctx.request.all() as unknown as CreateFeedbackType
+    const { text }: CreateFeedbackType = ctx.request.all() as unknown as CreateFeedbackType
 
     try {
       if (await ctx.auth.check()) {
-        await Feedback.query().update(payload).where('user_id', payload.user_id)
+        await Feedback.query().update({ text }).where('user_id', ctx.auth.user!.id)
         return ctx.response.redirect().back()
       }
     } catch (error) {

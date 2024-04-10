@@ -9,4 +9,5 @@ export type FeedbacksType = {
   user_id: string
   product_id: number
   text: string
+  pseudo: string
 }

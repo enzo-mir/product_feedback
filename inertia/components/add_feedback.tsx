@@ -1,13 +1,10 @@
 import { ProductType } from '#type/products'
 import { useForm } from '@inertiajs/react'
-import { FormEvent, useContext } from 'react'
-import { ThemeContexte } from '~/layout/layout'
+import { FormEvent } from 'react'
 
 const AddFeedback = ({ product }: { product: ProductType }) => {
-  const { user } = useContext(ThemeContexte)
   const { data, setData, post, processing } = useForm({
     product_id: product.id,
-    user_id: user!.id,
     text: '',
   })
 

@@ -9,6 +9,7 @@
 
 const PagesController = () => import('#controllers/pages_controller')
 const AuthController = () => import('#controllers/auth_controller')
+const FeedbacksController = () => import('#controllers/feedbacks_controller')
 import router from '@adonisjs/core/services/router'
 
 router.get('/', [PagesController, 'index'])
@@ -21,3 +22,11 @@ router
     router.get('logout', [AuthController, 'logout'])
   })
   .prefix('auth')
+
+router
+  .group(() => {
+    router.post('create', [FeedbacksController, 'create'])
+    router.post('update', [FeedbacksController, 'update'])
+    router.get('/:id/delete', [FeedbacksController, 'delete'])
+  })
+  .prefix('feedback')

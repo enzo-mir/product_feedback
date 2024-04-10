@@ -1,16 +1,34 @@
 import Register from '~/components/register'
 import styles from '../css/header.module.css'
 import Login from '~/components/login'
-const Header = ({ setOpenModal }: { setOpenModal(v: JSX.Element): void }) => {
+import { ThemeContexte } from '~/layout/layout'
+import { useContext } from 'react'
+import { Link } from '@inertiajs/react'
+const Header = () => {
+  const { user, setOpenModal } = useContext(ThemeContexte)
+
   return (
     <header className={styles.header}>
       <ul>
-        <li>
-          <button onClick={() => setOpenModal(<Register />)}>Register</button>
-        </li>
-        <li>
-          <button onClick={() => setOpenModal(<Login />)}>Login</button>
-        </li>
+        {user ? (
+          <>
+            <li>
+              <Link href="/auth/logout">Logout</Link>
+            </li>
+            <li>
+              <button>Profile</button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <button onClick={() => setOpenModal(<Register />)}>Register</button>
+            </li>
+            <li>
+              <button onClick={() => setOpenModal(<Login />)}>Login</button>
+            </li>
+          </>
+        )}
       </ul>
     </header>
   )

@@ -34,4 +34,10 @@ export default class AuthController {
       return ctx.response.redirect().back()
     }
   }
+  async logout(ctx: HttpContext) {
+    if (await ctx.auth.check()) {
+      ctx.auth.use('web').logout()
+      return ctx.response.redirect().back()
+    }
+  }
 }

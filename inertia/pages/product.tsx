@@ -1,9 +1,11 @@
-import Layout from '~/layout/layout'
+import Layout, { ThemeContexte } from '~/layout/layout'
 import { FeedbacksType, ProductType } from '#type/products'
 import Feedback from '~/components/feedback'
 import { Link } from '@inertiajs/react'
 
 import styles from '../css/products.module.css'
+import { useContext } from 'react'
+import AddFeedback from '~/components/add_feedback'
 
 const Product = ({
   product,
@@ -12,6 +14,7 @@ const Product = ({
   product: ProductType
   feedbacks: Array<FeedbacksType>
 }) => {
+  const { user, setOpenModal } = useContext(ThemeContexte)
   return (
     <main className={styles.main}>
       <Link href="/">Go back</Link>
@@ -30,6 +33,11 @@ const Product = ({
         ) : (
           <p>No feedback</p>
         )}
+        {user ? (
+          <button onClick={() => setOpenModal(<AddFeedback product={product} />)}>
+            Add feedback
+          </button>
+        ) : null}
       </section>
     </main>
   )

@@ -6,6 +6,14 @@
   gap: 10svh;
 }
 
+.main > section:last-child {
+  display: grid;
+  grid-template-rows: auto auto;
+  place-items: center;
+  height: fit-content;
+  gap: 2em;
+}
+
 .main > a {
   text-decoration: underline;
   color: rgb(255, 55, 55);

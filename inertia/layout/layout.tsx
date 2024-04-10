@@ -28,10 +28,10 @@ const Layout = ({ children }: { children: JSX.Element }) => {
 
   useEffect(() => {
     setComments(feedbackComments)
-  }, [usePage().props, feedbackComments])
+  }, [usePage().props])
 
   return (
-    <ThemeContexte.Provider value={{ user, setOpenModal, feedbackComments, feedbacks }}>
+    <ThemeContexte.Provider value={{ user, setOpenModal, feedbackComments: comments, feedbacks }}>
       {openModal && (
         <div className={styles.overlay} onClick={() => setOpenModal(null)}>
           <Modal setoOpenModal={setOpenModal}>{openModal}</Modal>

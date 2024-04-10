@@ -7,7 +7,7 @@ import AddComment from './add_comment'
 
 const Feedback = ({ feedback }: { feedback: FeedbacksType }) => {
   const { user, setOpenModal, feedbackComments } = useContext(ThemeContexte)
-  const filterAnswere = feedbackComments.filter((answere) => answere.feedbackId === feedback.id)
+  const filterAnswere = feedbackComments?.filter((answere) => answere.feedbackId === feedback.id)
   return (
     <>
       <li key={feedback.id}>
@@ -40,16 +40,18 @@ const Feedback = ({ feedback }: { feedback: FeedbacksType }) => {
           )
         ) : null}
       </li>
-      {filterAnswere.length
+      {filterAnswere?.length
         ? filterAnswere.map((answere) => {
             return (
               <ul>
                 <li key={answere.id}>
                   {answere.text}
 
-                  <Link href={`/comment/${answere.id}/delete`}>
-                    <button>X</button>
-                  </Link>
+                  {answere.pseudo === user?.pseudo ? (
+                    <Link href={`/comment/${answere.id}/delete`}>
+                      <button>X</button>
+                    </Link>
+                  ) : null}
                 </li>
               </ul>
             )

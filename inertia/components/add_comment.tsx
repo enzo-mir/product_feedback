@@ -19,6 +19,7 @@ const AddComment = ({
   })
   const { setOpenModal } = useContext(ThemeContexte)
   function handleSubmit(e: FormEvent) {
+    e.preventDefault()
     post('/comment/create', {
       data,
       onSuccess: () => {

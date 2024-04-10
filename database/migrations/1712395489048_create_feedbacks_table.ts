@@ -16,6 +16,16 @@ export default class extends BaseSchema {
         .onDelete('CASCADE')
       table.string('text').notNullable()
     })
+
+    this.defer(async (db) => {
+      await db.table(this.tableName).insert({
+        id: 1,
+        user_id: '1',
+        pseudo: 'Enzo',
+        product_id: 1,
+        text: 'this is a feedback',
+      })
+    })
   }
 
   async down() {

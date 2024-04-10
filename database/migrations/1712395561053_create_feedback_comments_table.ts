@@ -13,12 +13,27 @@ export default class extends BaseSchema {
         .inTable('feedbacks')
         .onDelete('CASCADE')
       table
+        .integer('product_id')
+        .unsigned()
+        .references('id')
+        .inTable('products')
+        .onDelete('CASCADE')
+      table
         .string('pseudo')
         .references('pseudo')
         .inTable('users')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
       table.string('text').notNullable()
+    })
+
+    this.defer(async (db) => {
+      await db.table(this.tableName).insert({
+        pseudo: 'Enzo',
+        feedback_id: 1,
+        product_id: 1,
+        text: 'this is a comment',
+      })
     })
   }
 

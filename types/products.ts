@@ -6,8 +6,8 @@ export type ProductType = {
 }
 export type FeedbacksType = {
   id: number
-  user_id: string
-  product_id: number
+  userId: string
+  productId: number
   text: string
   pseudo: string
 }

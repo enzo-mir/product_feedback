@@ -1,8 +1,10 @@
 import { ProductType } from '#type/products'
 import { useForm } from '@inertiajs/react'
-import { FormEvent } from 'react'
+import { FormEvent, useContext } from 'react'
+import { ThemeContexte } from '~/layout/layout'
 
 const AddFeedback = ({ product }: { product: ProductType }) => {
+  const { setOpenModal } = useContext(ThemeContexte)
   const { data, setData, post, processing } = useForm({
     product_id: product.id,
     text: '',
@@ -10,7 +12,12 @@ const AddFeedback = ({ product }: { product: ProductType }) => {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    post('/feedback/create', { data })
+    post('/feedback/create', {
+      data,
+      onSuccess: () => {
+        setOpenModal(null)
+      },
+    })
   }
   return (
     <>
